@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix SPACE ROC SIMULATOR",
+  "description": "2D spaceflight simulator featuring authentic orbital mechanics, modular rocket and space station construction, interactive Spaceport campus, crystal-clear solar system trajectory mapping, and full flight simulation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

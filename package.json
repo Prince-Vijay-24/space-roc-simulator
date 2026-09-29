@@ -1,0 +1,60 @@
+{
+  "main": "electron-main.cjs",
+  "name": "space-roc-simulator",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Space Rocket Launch Simulator",
+  "author": "Space Roc Team",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "build": "vite build",
+    "build:exe": "vite build && electron-builder --win portable",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "electron": "^44.4.1",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  },
+  "optionalDependencies": {
+    "@esbuild/linux-x64": "0.25.12"
+  },
+  "build": {
+    "appId": "com.spaceroc.simulator",
+    "productName": "Space Roc Simulator",
+    "icon": "public/icon.ico",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "public/**/*",
+      "electron-main.cjs"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "public/icon.ico"
+    }
+  }
+}

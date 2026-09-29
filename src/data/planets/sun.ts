@@ -1,0 +1,118 @@
+import { CelestialBodySpec, LandSurfaceSpec } from './types';
+
+export const sunLandSurface: LandSurfaceSpec = {
+  bodyId: 'sun',
+  bodyName: 'Sun (Sol)',
+  baseColor: '#fbbf24',
+  secondaryColor: '#ea580c',
+  crustRockColor: '#f97316',
+  soilDustColor: '#fef08a',
+  highlightColor: '#ffffff',
+  shadowColor: '#9a3412',
+  baseElevationM: 0,
+  maxElevationM: 15000,
+  minElevationM: -8000,
+  roughness: 0.9,
+  craterDensity: 0,
+  geologicalComposition: 'Superheated ionized hydrogen/helium plasma, turbulent convection cells, strong magnetic flux ropes',
+  surfaceTemperatureK: { min: 4500, avg: 5778, max: 15000000 },
+  radiationLevelRadHr: 1e9,
+  surfaceFeatures: [
+    {
+      id: 'sun_active_region',
+      name: 'Active Sunspot Region AR-3664',
+      type: 'plain',
+      angleRad: 0.8,
+      widthKm: 120000,
+      elevationMeters: -3000,
+      description: 'Massive complex multipolar sunspot group producing X-class solar flares and coronal mass ejections',
+      color: '#451a03',
+    },
+    {
+      id: 'sun_solar_prominence',
+      name: 'Great Solar Prominence Arch',
+      type: 'mountain',
+      angleRad: 2.1,
+      widthKm: 350000,
+      elevationMeters: 12000,
+      description: 'Towering magnetic flux loop suspended high above the chromosphere into the lower corona',
+      color: '#ef4444',
+    },
+    {
+      id: 'sun_coronal_hole',
+      name: 'Polar Coronal Hole',
+      type: 'plain',
+      angleRad: Math.PI * 0.5,
+      widthKm: 400000,
+      elevationMeters: -1500,
+      description: 'Open unipolar magnetic field line corridor channeling high-speed solar wind into interplanetary space',
+      color: '#7c2d12',
+    },
+  ],
+  getHeightAtAngle: (angle: number) => {
+    // Dynamic plasma convection granulation and magnetic wave ripples
+    return (
+      Math.sin(angle * 14) * 1200 +
+      Math.sin(angle * 32) * 600 +
+      Math.cos(angle * 70) * 300
+    );
+  },
+  getTerrainSample: (angle: number) => {
+    return {
+      elevation: Math.sin(angle * 14) * 1200 + Math.sin(angle * 32) * 600,
+      slope: 0.08,
+      surfaceType: 'plasma',
+      surfaceColor: '#fbbf24',
+      strataColors: ['#f59e0b', '#d97706', '#ea580c', '#c2410c'],
+      featureName: 'Photospheric Granulation Cell',
+    };
+  },
+};
+
+export const sunSpec: CelestialBodySpec = {
+  id: 'sun',
+  name: 'Sun (Sol)',
+  category: 'star',
+  radius: 1200000,
+  realRadiusKm: 696340,
+  realDistanceKm: 0,
+  realSemiMajorAxisAU: 0,
+  mass: 1.989e30,
+  realMassKg: 1.9885e30,
+  mu: 1.327124e20,
+  surfaceGravity: 274.0,
+  realSurfaceGravityMs2: 274.0,
+  escapeVelocity: 617500,
+  realEscapeVelocityKms: 617.7,
+  realOrbitSpeedKms: 0,
+  realOrbitPeriodDays: 0,
+  realDensityGcm3: 1.408,
+  realSurfacePressureBar: 0.125,
+  realHillSphereKm: Infinity,
+  realSurfaceTempRangeK: { min: 5772, avg: 5778, max: 15000000 },
+  axialTiltDeg: 7.25,
+  rotationPeriodSec: 2160000, // ~25 days differential equator
+  hasAtmosphere: true,
+  atmosphereHeight: 90000,
+  scaleHeight: 25000,
+  surfacePressureAtm: 100,
+  surfaceDensityKgM3: 0.2,
+  atmosphereComposition: '73.46% Hydrogen, 24.85% Helium, 0.77% Oxygen, 0.29% Carbon, 0.16% Neon, 0.14% Iron',
+  atmosphereColor: 'rgba(251, 191, 36, 0.75)',
+  atmosphereGlowColor: 'rgba(245, 158, 11, 0.45)',
+  atmosphereRimColor: 'rgba(255, 255, 255, 0.95)',
+  hazeOpacity: 0.95,
+  orbitRadius: 0,
+  orbitPeriod: 0,
+  orbitSpeed: 0,
+  soiRadius: Infinity,
+  initialAngle: 0,
+  semiMajorAxisAU: 0,
+  primaryColor: '#f59e0b',
+  secondaryColor: '#ea580c',
+  accentColor: '#fef08a',
+  surfaceDetailType: 'sun_corona',
+  details: 'Type G2V Yellow Dwarf Star, gravitational anchor of the Solar System containing 99.86% of total system mass.',
+  geologySummary: 'Dynamic thermonuclear fusion powerhouse with boiling photospheric granules, intense sunspots, and turbulent coronal loops.',
+  landSurface: sunLandSurface,
+};
